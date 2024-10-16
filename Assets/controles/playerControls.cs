@@ -37,9 +37,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""New action1"",
+                    ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""b070f95d-0e41-4f0c-b0c2-0c06b58b82ac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dodge"",
+                    ""type"": ""Button"",
+                    ""id"": ""45fe94f6-7c90-4b0f-8cd5-5af4546c1575"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -214,12 +223,23 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f134e9c8-0844-4f8f-8593-75989c1e814b"",
-                    ""path"": """",
+                    ""id"": ""4b303be1-3473-4f5c-9148-96b5581b65e3"",
+                    ""path"": ""<HID::Microntek              USB Joystick          >/button8"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action1"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f26578d-12ce-463d-a9e4-c8aa0e3de105"",
+                    ""path"": ""<HID::Microntek              USB Joystick          >/button3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dodge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -231,7 +251,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // PlayerInputs
         m_PlayerInputs = asset.FindActionMap("PlayerInputs", throwIfNotFound: true);
         m_PlayerInputs_Movement = m_PlayerInputs.FindAction("Movement", throwIfNotFound: true);
-        m_PlayerInputs_Newaction1 = m_PlayerInputs.FindAction("New action1", throwIfNotFound: true);
+        m_PlayerInputs_Attack = m_PlayerInputs.FindAction("Attack", throwIfNotFound: true);
+        m_PlayerInputs_Dodge = m_PlayerInputs.FindAction("Dodge", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -294,13 +315,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerInputs;
     private List<IPlayerInputsActions> m_PlayerInputsActionsCallbackInterfaces = new List<IPlayerInputsActions>();
     private readonly InputAction m_PlayerInputs_Movement;
-    private readonly InputAction m_PlayerInputs_Newaction1;
+    private readonly InputAction m_PlayerInputs_Attack;
+    private readonly InputAction m_PlayerInputs_Dodge;
     public struct PlayerInputsActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerInputsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerInputs_Movement;
-        public InputAction @Newaction1 => m_Wrapper.m_PlayerInputs_Newaction1;
+        public InputAction @Attack => m_Wrapper.m_PlayerInputs_Attack;
+        public InputAction @Dodge => m_Wrapper.m_PlayerInputs_Dodge;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInputs; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -313,9 +336,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
-            @Newaction1.started += instance.OnNewaction1;
-            @Newaction1.performed += instance.OnNewaction1;
-            @Newaction1.canceled += instance.OnNewaction1;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+            @Dodge.started += instance.OnDodge;
+            @Dodge.performed += instance.OnDodge;
+            @Dodge.canceled += instance.OnDodge;
         }
 
         private void UnregisterCallbacks(IPlayerInputsActions instance)
@@ -323,9 +349,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
-            @Newaction1.started -= instance.OnNewaction1;
-            @Newaction1.performed -= instance.OnNewaction1;
-            @Newaction1.canceled -= instance.OnNewaction1;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+            @Dodge.started -= instance.OnDodge;
+            @Dodge.performed -= instance.OnDodge;
+            @Dodge.canceled -= instance.OnDodge;
         }
 
         public void RemoveCallbacks(IPlayerInputsActions instance)
@@ -346,6 +375,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IPlayerInputsActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnNewaction1(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnDodge(InputAction.CallbackContext context);
     }
 }
