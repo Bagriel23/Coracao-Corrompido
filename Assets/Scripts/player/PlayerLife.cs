@@ -23,6 +23,7 @@ public class PlayerLife : MonoBehaviour
     public void TakeDamage(int damage)
     {
         this.life -= damage;
+        Debug.Log("Player Sofreu " + damage + " de dano");
     }
 
     public void EndGame()

@@ -6,8 +6,6 @@ public class EnemyMovement : MonoBehaviour
 {
 
     [SerializeField] private Transform player;
-    public Vector3 movementDirection;
-    public float movSpeed;
     private UnityEngine.AI.NavMeshAgent selfAgent;
 
     void Start()
