@@ -1162,7 +1162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bba314a08f5cf0789acc28903ecf848b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: 
+  nextScene: testes player
   menuPanel: {fileID: 1842330572}
   settingsPanel: {fileID: 69978919}
   globalVol: {fileID: 480015478}
@@ -3259,8 +3259,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 780291522}
   m_HandleRect: {fileID: 1164456836}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 1
+  m_MaxValue: 20
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:

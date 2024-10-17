@@ -28,6 +28,8 @@ public class MenuController : MonoBehaviour
     {
         SaveConfigs();
         CloseSettings();
+
+        Debug.Log("Salvou as config");
     }
 
         public void Quit()
@@ -38,8 +40,8 @@ public class MenuController : MonoBehaviour
 
     public void OpenSettings()
     {
-            menuPanel.SetActive(false);
-            settingsPanel.SetActive(true);
+        menuPanel.SetActive(false);
+        settingsPanel.SetActive(true);
     }
 
     public void CloseSettings()
@@ -56,8 +58,6 @@ public class MenuController : MonoBehaviour
         PlayerPrefs.SetFloat("PlayerSense", sense.value);
 
         PlayerPrefs.Save();
-
-        Debug.Log("Salvou as config");
     }
 
     private void LoadConfigs()
@@ -65,7 +65,7 @@ public class MenuController : MonoBehaviour
         globalVol.value = PlayerPrefs.HasKey("GlobalVolume") ? PlayerPrefs.GetFloat("GlobalVolume") : 0.5f;
         musicVol.value = PlayerPrefs.HasKey("MusicVolume") ? PlayerPrefs.GetFloat("MusicVolume") : 0.5f;
         effectsVol.value = PlayerPrefs.HasKey("EffectsVolume") ? PlayerPrefs.GetFloat("EffectsVolume") : 0.5f;
-        sense.value = PlayerPrefs.HasKey("PlayerSense") ? PlayerPrefs.GetFloat("PlayerSense") : 1.0f;
+        sense.value = PlayerPrefs.HasKey("PlayerSense") ? PlayerPrefs.GetFloat("PlayerSense") : 15.0f;
     }
 
     public void ResetToDefault()
@@ -73,7 +73,7 @@ public class MenuController : MonoBehaviour
         globalVol.value = 0.8f;
         musicVol.value = 0.6f;
         effectsVol.value = 0.5f;
-        sense.value = 1.0f;
+        sense.value = 15f;
 
         SaveConfigs();
 

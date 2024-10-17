@@ -3,7 +3,7 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     [Header("Aim Info")]
-    public float sensibilidade = 2;
+    public float sensibilidade = 15;
     public float suavizacao = 1.5f;
     public float limiteVertical;
 
@@ -18,6 +18,8 @@ public class CameraControl : MonoBehaviour
     
     void Start()
     {
+        sensibilidade = PlayerPrefs.GetFloat("PlayerSense", 15f);
+
         Cursor.lockState = CursorLockMode.Locked;
     }
 
