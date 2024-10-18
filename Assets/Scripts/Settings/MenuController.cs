@@ -8,6 +8,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private string nextScene;
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private Toggle invertAnalog;
     public Slider globalVol, musicVol, effectsVol, sense;
 
     private string configPath;
@@ -57,6 +58,8 @@ public class MenuController : MonoBehaviour
         PlayerPrefs.SetFloat("EffectsVolume", effectsVol.value);
         PlayerPrefs.SetFloat("PlayerSense", sense.value);
 
+        PlayerPrefs.SetInt("InvertAnalog", invertAnalog.isOn ? 1 : 0);
+
         PlayerPrefs.Save();
     }
 
@@ -66,6 +69,10 @@ public class MenuController : MonoBehaviour
         musicVol.value = PlayerPrefs.HasKey("MusicVolume") ? PlayerPrefs.GetFloat("MusicVolume") : 0.5f;
         effectsVol.value = PlayerPrefs.HasKey("EffectsVolume") ? PlayerPrefs.GetFloat("EffectsVolume") : 0.5f;
         sense.value = PlayerPrefs.HasKey("PlayerSense") ? PlayerPrefs.GetFloat("PlayerSense") : 15.0f;
+        
+        int isInverted = PlayerPrefs.GetInt("InvertAnalog", 0);
+        invertAnalog.isOn = isInverted == 1;
+        Debug.Log(isInverted);
     }
 
     public void ResetToDefault()
@@ -75,8 +82,9 @@ public class MenuController : MonoBehaviour
         effectsVol.value = 0.5f;
         sense.value = 15f;
 
+        invertAnalog.isOn = false;
+        
         SaveConfigs();
-
         Debug.Log("Retornou ao default");
     }
 }

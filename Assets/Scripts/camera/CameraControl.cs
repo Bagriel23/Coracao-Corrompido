@@ -7,7 +7,7 @@ public class CameraControl : MonoBehaviour
     public float suavizacao = 1.5f;
     public float limiteVertical;
 
-
+    private bool isInverted;
 
     public Transform playerTransform;
 
@@ -18,9 +18,10 @@ public class CameraControl : MonoBehaviour
     
     void Start()
     {
-        sensibilidade = PlayerPrefs.GetFloat("PlayerSense", 15f);
-
         Cursor.lockState = CursorLockMode.Locked;
+
+        sensibilidade = PlayerPrefs.GetFloat("PlayerSense", 15f);
+        isInverted = PlayerPrefs.GetInt("InvertAnalog", 0) == 1;
     }
 
 
