@@ -35,10 +35,17 @@ public class Enemy : MonoBehaviour
 
         if (enemyLife.life <= 0)
         {
-            Debug.Log(waveSpawner.currentWaveIndex);
-            waveSpawner.waves[waveSpawner.currentWaveIndex].enemiesLeft--;
-            Debug.Log("Numero de inimigos sobrando segundo o atributo da wave: "+ waveSpawner.waves[waveSpawner.currentWaveIndex].enemiesLeft);
-            Debug.Log("Numero de inimigos sobrando segundo o atributo local: "+ waveSpawner.waves[originalWave].enemiesLeft);
+            Debug.Log("Horda atual: "+ waveSpawner.currentWaveIndex);
+            if (waveSpawner.waves[waveSpawner.currentWaveIndex].enemiesLeft > 0)
+            {
+                waveSpawner.waves[waveSpawner.currentWaveIndex].enemiesLeft--;
+                Debug.Log("Numero de inimigos sobrando segundo o atributo da wave: "+ waveSpawner.waves[waveSpawner.currentWaveIndex].enemiesLeft);
+                Debug.Log("Numero de inimigos sobrando segundo o atributo local: "+ waveSpawner.waves[originalWave].enemiesLeft);
+            }
+            else
+            {
+                Debug.Log("Todos os inimigos dessa horda foram derrotados");
+            }
             enemyLife.Die();
         }
     }
