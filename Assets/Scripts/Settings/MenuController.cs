@@ -68,7 +68,7 @@ public class MenuController : MonoBehaviour
         globalVol.value = PlayerPrefs.HasKey("GlobalVolume") ? PlayerPrefs.GetFloat("GlobalVolume") : 0.5f;
         musicVol.value = PlayerPrefs.HasKey("MusicVolume") ? PlayerPrefs.GetFloat("MusicVolume") : 0.5f;
         effectsVol.value = PlayerPrefs.HasKey("EffectsVolume") ? PlayerPrefs.GetFloat("EffectsVolume") : 0.5f;
-        sense.value = PlayerPrefs.HasKey("PlayerSense") ? PlayerPrefs.GetFloat("PlayerSense") : 15.0f;
+        sense.value = PlayerPrefs.HasKey("PlayerSense") ? PlayerPrefs.GetFloat("PlayerSense") : 5.0f;
         
         int isInverted = PlayerPrefs.GetInt("InvertAnalog", 0);
         invertAnalog.isOn = isInverted == 1;
@@ -80,7 +80,7 @@ public class MenuController : MonoBehaviour
         globalVol.value = 0.8f;
         musicVol.value = 0.6f;
         effectsVol.value = 0.5f;
-        sense.value = 15f;
+        sense.value = 5f;
 
         invertAnalog.isOn = false;
         

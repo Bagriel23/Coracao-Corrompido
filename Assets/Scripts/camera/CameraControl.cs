@@ -3,11 +3,11 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     [Header("Aim Info")]
-    public float sensibilidade = 15;
+    public float sensibilidade = 5;
     public float suavizacao = 1.5f;
     public float limiteVertical;
 
-    private bool isInverted;
+    private bool inverted;
 
     public Transform playerTransform;
 
@@ -20,9 +20,18 @@ public class CameraControl : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
 
-        sensibilidade = PlayerPrefs.GetFloat("PlayerSense", 15f);
-        isInverted = PlayerPrefs.GetInt("InvertAnalog", 0) == 1;
+        sensibilidade = PlayerPrefs.GetFloat("PlayerSense", 5f);
+        inverted = PlayerPrefs.GetInt("InvertAnalog", 0) == 0;
     }
+
+        // if (nverted == true)
+        // {
+        //     vai estar invertido
+        // }
+        // else
+        // {
+        //     não vai estar invertido
+        // }
 
 
     void Update()
