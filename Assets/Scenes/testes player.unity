@@ -240,7 +240,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.031475116, y: 0.892}
   m_AnchorMax: {x: 0.34947512, y: 0.92800003}
-  m_AnchoredPosition: {x: -0.2999878, y: 0.099998474}
+  m_AnchoredPosition: {x: -0.2999878, y: 0.1000061}
   m_SizeDelta: {x: 0.19089985, y: 0.9999962}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &155934872
@@ -569,6 +569,27 @@ MonoBehaviour:
   easeHpSlider: {fileID: 155934872}
   maxHP: 100
   currentHP: 100
+--- !u!65 &830407376
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830407366}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: -0.38, z: 0}
 --- !u!1 &922142912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,7 +1088,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.031475116, y: 0.892}
   m_AnchorMax: {x: 0.34947512, y: 0.92800003}
-  m_AnchoredPosition: {x: -0.2999878, y: 0.099998474}
+  m_AnchoredPosition: {x: -0.2999878, y: 0.1000061}
   m_SizeDelta: {x: 0.19089985, y: 0.9999962}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1872643603
@@ -1154,9 +1175,9 @@ MonoBehaviour:
   spawnPoint: {fileID: 1004144475}
   waves:
   - enemies:
-    - {fileID: 3911991578242711099, guid: 7eaae3d7485e1294f9dce077af32bee6, type: 3}
-    - {fileID: 3911991578242711099, guid: 7eaae3d7485e1294f9dce077af32bee6, type: 3}
-    - {fileID: 3911991578242711099, guid: 7eaae3d7485e1294f9dce077af32bee6, type: 3}
+    - {fileID: 1770419344801194773, guid: eae5ded7769edf54988812929120897e, type: 3}
+    - {fileID: 1770419344801194773, guid: eae5ded7769edf54988812929120897e, type: 3}
+    - {fileID: 1770419344801194773, guid: eae5ded7769edf54988812929120897e, type: 3}
     timeToNextEnemy: 4
     timeToNextWave: 3
     enemiesLeft: 0
@@ -1349,14 +1370,22 @@ PrefabInstance:
       propertyPath: attackRadius
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7685543142310499111, guid: 9e137d9e32a00fe41803bfbe29916180, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.38
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 571934163431397527, guid: 9e137d9e32a00fe41803bfbe29916180, type: 3}
+    - {fileID: 7795782587949107597, guid: 9e137d9e32a00fe41803bfbe29916180, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 525563048553322759, guid: 9e137d9e32a00fe41803bfbe29916180, type: 3}
       insertIndex: -1
       addedObject: {fileID: 830407371}
+    - targetCorrespondingSourceObject: {fileID: 525563048553322759, guid: 9e137d9e32a00fe41803bfbe29916180, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 830407376}
   m_SourcePrefab: {fileID: 100100000, guid: 9e137d9e32a00fe41803bfbe29916180, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

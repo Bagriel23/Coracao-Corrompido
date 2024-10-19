@@ -1,5 +1,3 @@
-
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +33,7 @@ public class Enemy : MonoBehaviour
 
         if (enemyLife.life <= 0)
         {
+            
             Debug.Log("Horda atual: "+ waveSpawner.currentWaveIndex);
             if (waveSpawner.waves[waveSpawner.currentWaveIndex].enemiesLeft > 0)
             {

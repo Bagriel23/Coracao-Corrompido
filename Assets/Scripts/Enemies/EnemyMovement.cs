@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
-    [SerializeField] private Transform player;
+    private Animator anim;
+    private Transform player;
     private UnityEngine.AI.NavMeshAgent selfAgent;
+    private float speed = 1f;
 
     void Start()
     {
@@ -18,16 +19,21 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player != null)
-        {
-            MoveTowardsPlayer();
-        }
+         MoveTowardsPlayer();  
     }
 
     private void MoveTowardsPlayer()
     {
-        anim.SetFloat("Speed", 1f);
-        selfAgent.destination = player.position;
+        if (player != null && !anim.GetBool("AttackPlayer"))
+        { 
+            anim.SetFloat("Speed", speed);
+            selfAgent.destination = player.position;
+        }
+        else
+        {
+            selfAgent.destination = this.transform.position;
+        }
+       
     }
 
 
