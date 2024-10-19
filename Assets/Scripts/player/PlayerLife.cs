@@ -19,6 +19,7 @@ public class PlayerLife : MonoBehaviour
         currentHP = maxHP;
         hpSlider.value = currentHP;
         easeHpSlider.value = currentHP;
+        Time.timeScale = 1f;
 
         deathEvent = GetComponent<DeathEvent>();
     }
