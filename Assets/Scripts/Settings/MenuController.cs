@@ -3,12 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
+[System.Serializable]
+public class UIElement
+{
+    public Button button;
+    public Slider slider;
+    public Toggle toggle;
+}
+
 public class MenuController : MonoBehaviour
 {
+
+    public UIElement[] settingsElements;
+    public Button[] menuButtons;
     [SerializeField] private string nextScene;
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private Toggle invertAnalog;
+    private int optionsIndex;
     public Slider globalVol, musicVol, effectsVol, sense;
 
     private string configPath;
@@ -17,6 +30,8 @@ public class MenuController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        optionsIndex = 0;
+        ResetToDefault();
         LoadConfigs();
     }
 
