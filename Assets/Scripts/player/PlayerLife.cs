@@ -8,7 +8,10 @@ public class PlayerLife : MonoBehaviour
     public Slider hpSlider, easeHpSlider;
     [SerializeField] private float maxHP;
     [SerializeField] private float currentHP;
+    [SerializeField] private GameObject screenOverlay;
+    private DeathEvent deathEvent;
     private float smoothVelocity = 0f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +19,8 @@ public class PlayerLife : MonoBehaviour
         currentHP = maxHP;
         hpSlider.value = currentHP;
         easeHpSlider.value = currentHP;
+
+        deathEvent = GetComponent<DeathEvent>();
     }
 
     // Update is called once per frame
@@ -24,6 +29,7 @@ public class PlayerLife : MonoBehaviour
         UpdateHP();
         testDamage();        
         easeEffect();
+        DeathScenario();
 
         currentHP =  Mathf.Clamp(currentHP, 0, maxHP);
     }
@@ -44,7 +50,7 @@ public class PlayerLife : MonoBehaviour
         }   
     }
 
-    public void testDamage()
+    private void testDamage()
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -56,5 +62,14 @@ public class PlayerLife : MonoBehaviour
     {
         currentHP -= damage;
         Debug.Log("Player Sofreu " + damage + " de dano. Vida atual: " + currentHP + ".");
+    }
+
+    public void DeathScenario()
+    {
+        if (currentHP <= 0)
+        {
+            deathEvent.OnPlayerDeath();
+            screenOverlay.SetActive(false);
+        }
     }
 }
