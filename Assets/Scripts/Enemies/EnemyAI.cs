@@ -39,4 +39,19 @@ public class EnemyAI : MonoBehaviour
             }
         }
     }
+
+    public void BodyAttack()
+    {
+        Vector3 hitBoxSize = new Vector3(attackRadius, attackRadius, attackRadius);
+
+        Collider[] playerToDamge = Physics.OverlapBox(attackHitbox.position, hitBoxSize / 2, Quaternion.identity);
+        for (int i = 0; i < playerToDamge.Length; i++)
+        {
+            PlayerLife playerLife = playerToDamge[i].GetComponent<PlayerLife>();
+            if (playerLife != null)
+            {
+                playerLife.TakeDamage(1);
+            }
+        }
+    }
 }

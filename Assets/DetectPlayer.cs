@@ -5,11 +5,11 @@ using System;
 
 public class DetectPlayer : MonoBehaviour
 {
-    public EnemyAI AI;
-    private Rigidbody player;
+    private EnemyAI AI;
+
     private void Start()
     {
-        //player = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
+        AI = GetComponentInParent<EnemyAI>();
     }
     private void OnTriggerEnter(Collider other)
     {

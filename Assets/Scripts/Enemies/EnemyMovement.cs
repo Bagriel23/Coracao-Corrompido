@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     private Transform player;
     private UnityEngine.AI.NavMeshAgent selfAgent;
     private float speed = 1f;
+    public bool hasSeparateAttack;
 
     void Start()
     {
@@ -19,10 +20,17 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         MoveTowardsPlayer();  
+        if (hasSeparateAttack)
+        {
+            MoveTowardsPlayerWithSpeedParameter();
+        }
+        else
+        {
+            MoveTowardsPlayer();
+        }
     }
 
-    private void MoveTowardsPlayer()
+    private void MoveTowardsPlayerWithSpeedParameter()
     {
         if (player != null && !anim.GetBool("AttackPlayer"))
         { 
@@ -35,6 +43,20 @@ public class EnemyMovement : MonoBehaviour
         }
        
     }
+
+    private void MoveTowardsPlayer()
+    {
+        if (player != null)
+        {
+            selfAgent.destination = player.position;
+        }
+        else
+        {
+            selfAgent.destination = this.transform.position;
+        }
+
+    }
+
 
 
 }
