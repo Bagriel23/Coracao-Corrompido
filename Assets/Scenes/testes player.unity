@@ -1443,8 +1443,8 @@ MonoBehaviour:
   spawnPoint: {fileID: 1004144475}
   waves:
   - enemies:
-    - {fileID: 1770419344801194773, guid: eae5ded7769edf54988812929120897e, type: 3}
-    - {fileID: 1770419344801194773, guid: eae5ded7769edf54988812929120897e, type: 3}
+    - {fileID: 3911991578242711099, guid: 7eaae3d7485e1294f9dce077af32bee6, type: 3}
+    - {fileID: 3911991578242711099, guid: 7eaae3d7485e1294f9dce077af32bee6, type: 3}
     - {fileID: 1770419344801194773, guid: eae5ded7769edf54988812929120897e, type: 3}
     timeToNextEnemy: 4
     timeToNextWave: 3
