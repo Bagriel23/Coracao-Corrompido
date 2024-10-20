@@ -5,12 +5,22 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     DetectInputs inputs;
-    public Vector2 moveInput;
-    public Vector3 movementDirection;
+    [Header("Inputs de movimento")]
+    [SerializeField] private Vector2 moveInput;
+    [SerializeField] private Vector3 movementDirection;
     private CharacterController characterController;
+    private bool dodge, dodgeIsActiveToUse;
+    [SerializeField] private float timer;
+    [Header("Config de Dodge ")]
+    public float timerToDodge;
+    public float distanceOfDodge;
+
+    [Header("Config de movimento ")]
     public float movSpeed;
     private float verticalVelocity;
     Vector3 hitBoxPosition;
+
+    [Header("Config de Range de ataque")]
     public float attackRadius;
     float distanceInFront = 1.5f;
     [SerializeField] private bool attack;
@@ -28,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
 
         inputs.controls.PlayerInputs.Movement.performed += context => moveInput = context.ReadValue<Vector2>();
         inputs.controls.PlayerInputs.Movement.canceled += context => moveInput = Vector2.zero;
+        inputs.controls.PlayerInputs.Dodge.performed += context => dodge = true;
+        inputs.controls.PlayerInputs.Dodge.canceled += context => dodge = false;
         inputs.controls.PlayerInputs.Attack.performed += context => attack = true;
         inputs.controls.PlayerInputs.Attack.canceled += context => attack = false;
 
@@ -37,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
     {
         ApplyMovement();
         Attack();
+        ResetTimerToDodge();
 
     }
 
@@ -46,13 +59,34 @@ public class PlayerMovement : MonoBehaviour
 
         ApplyGravity();
 
-
+        
         if (movementDirection.magnitude > 0)
         {
+
+
             characterController.Move(movementDirection * Time.deltaTime * movSpeed);
-            
+
+            if (dodge && dodgeIsActiveToUse)
+            {
+                characterController.Move(movementDirection * Time.deltaTime * distanceOfDodge);
+                dodgeIsActiveToUse = false;
+            }
+
         }
-        
+
+    }
+
+    private void ResetTimerToDodge()
+    {
+        if (timer <= 0)
+        {
+            dodgeIsActiveToUse = true;
+            timer = timerToDodge;
+        }
+        else if (!dodgeIsActiveToUse)
+        {
+            timer -= 1 * Time.deltaTime;
+        }
     }
 
     private void Attack()
@@ -89,5 +123,5 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    
+
 }
