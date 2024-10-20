@@ -12,7 +12,10 @@ public class PauseSystem : MonoBehaviour
     {
         Time.timeScale = 1f;
         isPaused = false;
-        Cursor.visible = isPaused;
+        pauseMenu.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -20,16 +23,34 @@ public class PauseSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Pause();
+            if (!isPaused)
+            {
+                Pause();
+            }
+            else if (isPaused)
+            {
+                Resume();
+            }
         }
     }
 
     public void Pause()
     {
-        isPaused = !isPaused;
-        pauseMenu.SetActive(isPaused);
-        Cursor.visible = !isPaused;
-        Time.timeScale = isPaused ? 0f : 1f;
-        Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
+        isPaused = true;
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void Resume()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

@@ -43,7 +43,6 @@ public class MenuController : MonoBehaviour
     public void Save()
     {
         SaveConfigs();
-        CloseSettings();
 
         Debug.Log("Salvou as config");
     }
