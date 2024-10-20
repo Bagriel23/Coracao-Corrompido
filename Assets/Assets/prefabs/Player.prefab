@@ -12,9 +12,12 @@ GameObject:
   - component: {fileID: 6189034071815928232}
   - component: {fileID: 4929271064919016984}
   - component: {fileID: 1720636737753359810}
+  - component: {fileID: 1595562722173443128}
+  - component: {fileID: 1771394522283895228}
+  - component: {fileID: 8918641813250282277}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 525563048553322759}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8350788, y: 1.76, z: 0.17316547}
+  m_LocalPosition: {x: 11.32, y: 1.76, z: 0.17316547}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -50,8 +53,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveInput: {x: 0, y: 0}
   movementDirection: {x: 0, y: 0, z: 0}
+  timer: 0
+  timerToDodge: 3
+  distanceOfDodge: 60
   movSpeed: 3
-  attackRadius: 0
+  attackRadius: 5
   attack: 0
 --- !u!143 &4929271064919016984
 CharacterController:
@@ -91,6 +97,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd87e2b63e5185247903b61a1648734f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1595562722173443128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525563048553322759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f6d86f461cf09a4caa70a1834b43f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpSlider: {fileID: 0}
+  easeHpSlider: {fileID: 0}
+  maxHP: 100
+  currentHP: 100
+  screenOverlay: {fileID: 0}
+--- !u!65 &1771394522283895228
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525563048553322759}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: -0.38, z: 0}
+--- !u!114 &8918641813250282277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525563048553322759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc07379f2175b04e9aff84a93dd710d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgAnimator: {fileID: 0}
+  deathOverlay: {fileID: 0}
+  bg: {fileID: 0}
+  menuScene: TitleScreen
+  backToTitle: 8
 --- !u!1 &817728247203613751
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +163,6 @@ GameObject:
   - component: {fileID: 7685543142310499111}
   - component: {fileID: 7348772304519517061}
   - component: {fileID: 1467331984536807789}
-  - component: {fileID: 7795782587949107597}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -119,7 +179,7 @@ Transform:
   m_GameObject: {fileID: 817728247203613751}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -175,27 +235,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7795782587949107597
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 817728247203613751}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4635827897469281359
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,5 +342,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensibilidade: 2
   suavizacao: 1.5
-  limiteVertical: 40
+  limiteVertical: 15
   playerTransform: {fileID: 5972886681585499474}
