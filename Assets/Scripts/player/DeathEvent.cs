@@ -15,7 +15,6 @@ public class DeathEvent : MonoBehaviour
 
     void Start()
     {
-        // playerAnimator = player.GetComponent<Animator>();
         bgAnimator = bg.GetComponent<Animator>();
     }
 

@@ -9,6 +9,10 @@ public class PlayerLife : MonoBehaviour
     [SerializeField] private float maxHP;
     [SerializeField] private float currentHP;
     [SerializeField] private GameObject screenOverlay;
+    [SerializeField] private GameObject hitEffect;
+
+    [SerializeField] private float flashDuration = 0.1f;
+    private float flashEndTime;
     private DeathEvent deathEvent;
     private float smoothVelocity = 0f;
 
@@ -19,6 +23,7 @@ public class PlayerLife : MonoBehaviour
         currentHP = maxHP;
         hpSlider.value = currentHP;
         easeHpSlider.value = currentHP;
+        hitEffect.SetActive(false);
 
         deathEvent = GetComponent<DeathEvent>();
     }
@@ -30,6 +35,7 @@ public class PlayerLife : MonoBehaviour
         testDamage();        
         easeEffect();
         DeathScenario();
+        DisableHitEffect();
 
         currentHP =  Mathf.Clamp(currentHP, 0, maxHP);
     }
@@ -62,6 +68,7 @@ public class PlayerLife : MonoBehaviour
     {
         currentHP -= damage;
         Debug.Log("Player Sofreu " + damage + " de dano. Vida atual: " + currentHP + ".");
+        TriggerHitEffect();
     }
 
     public void DeathScenario()
@@ -71,5 +78,19 @@ public class PlayerLife : MonoBehaviour
             deathEvent.OnPlayerDeath();
             screenOverlay.SetActive(false);
         }
+    }
+
+    private void DisableHitEffect()
+    {
+        if (hitEffect.activeSelf && Time.time > flashEndTime)
+        {
+            hitEffect.SetActive(false);
+        }
+    }
+
+    private void TriggerHitEffect()
+    {
+        hitEffect.SetActive(true);
+        flashEndTime = Time.time + flashDuration;
     }
 }
