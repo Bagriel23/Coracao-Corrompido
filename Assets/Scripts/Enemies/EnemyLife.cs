@@ -44,8 +44,10 @@ public class EnemyLife : MonoBehaviour
 
     public void TookRightSlow() {
         this.canTakeRightSlow = false;
+        timerToTakeRightSlow = 2;
     }
     public void TookLeftDamage() {
         this.canTakeLeftDamage = false;
+        timerToTakeLeftDamage = 1.5f;
     }
 }

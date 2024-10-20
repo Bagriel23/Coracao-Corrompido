@@ -13,6 +13,7 @@ public class DetectEnemy : MonoBehaviour
     void Start()
     {
         player = GetComponentInParent<PlayerActions>();
+        inputs = GetComponent<DetectInputs>();
     }
 
     private void Awake()
@@ -35,6 +36,14 @@ public class DetectEnemy : MonoBehaviour
      //   Debug.Log(player.rightLowerSpeedIntensity);
       //  Debug.Log(rAttack);
        // Debug.Log(lAttack);
+       if(inputs!= null)
+        {
+            Debug.Log("CONTROLLER DETECTADO");
+        }
+        else
+        {
+            Debug.Log("CONTROLLER NAO DETECTADO!!");
+        }
     }
 
     private void OnTriggerEnter(Collider other)

@@ -5641,6 +5641,10 @@ PrefabInstance:
       propertyPath: attackRadius
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6189034071815928232, guid: 9e137d9e32a00fe41803bfbe29916180, type: 3}
+      propertyPath: leftMagicDamage
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7685543142310499111, guid: 9e137d9e32a00fe41803bfbe29916180, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.38
