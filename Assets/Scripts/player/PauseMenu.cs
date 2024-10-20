@@ -22,6 +22,10 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         optionsIndex = 0;
+    }
+
+    public void Update()
+    {
         LoadConfigs();
     }
 
