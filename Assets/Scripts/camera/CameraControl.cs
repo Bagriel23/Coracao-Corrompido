@@ -19,9 +19,7 @@ public class CameraControl : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-
-        sensibilidade = PlayerPrefs.GetFloat("PlayerSense", 5f);
-        inverted = PlayerPrefs.GetInt("InvertAnalog", 0) == 0;
+        LoadSettings();
     }
 
         // if (nverted == true)
@@ -46,6 +44,14 @@ public class CameraControl : MonoBehaviour
 
         transform.localRotation = Quaternion.AngleAxis(-velocidadeRotacao.y, Vector3.right);
         playerTransform.localRotation = Quaternion.AngleAxis(velocidadeRotacao.x, Vector3.up);
-        
+
+
+        sensibilidade = PlayerPrefs.GetFloat("PlayerSense", 5f);
+    }
+
+    public void LoadSettings()
+    {
+        sensibilidade = PlayerPrefs.GetFloat("PlayerSense", 5f);
+        inverted = PlayerPrefs.GetInt("InvertAnalog", 0) == 0;
     }
 }

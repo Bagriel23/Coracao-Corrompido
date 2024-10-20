@@ -14,25 +14,21 @@ public class PauseMenu : MonoBehaviour
 {
 
     public PauseElement[] settingsElements;
-    [SerializeField] private Toggle invertAnalog;
     private int optionsIndex;
+    [SerializeField] private CameraControl cameraControl;
+    [SerializeField] private Toggle invertAnalog;
     [SerializeField] private Slider globalVol, musicVol, effectsVol, sense;
-
     private string configPath;
     private void Start()
     {
         optionsIndex = 0;
-    }
-
-    public void Update()
-    {
         LoadConfigs();
     }
 
     public void Save()
     {
         SaveConfigs();
-
+        cameraControl.LoadSettings();
         Debug.Log("Salvou as config");
     }
 

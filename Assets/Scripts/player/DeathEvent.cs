@@ -11,8 +11,7 @@ public class DeathEvent : MonoBehaviour
     [SerializeField] private Image bg;
     [SerializeField] private string menuScene;
     [SerializeField] private float backToTitle = 5f;
-    private float interval = 1.3f;
-    private float lastEffect = 0f;
+    private float inteval = 0f;
 
     void Start()
     {
@@ -24,15 +23,10 @@ public class DeathEvent : MonoBehaviour
     {
         deathOverlay.SetActive(true);
         Time.timeScale = 0f;
-        lastEffect += Time.unscaledDeltaTime;
-        // Debug.Log(lastEffect);
-        // playerAnimator.SetTrigger("");
-        if (lastEffect >= interval)
-        {
-            bgAnimator.SetTrigger("FadeIn");
-        }
-
-        if (lastEffect >= backToTitle)
+        inteval += Time.unscaledDeltaTime;
+        bgAnimator.SetTrigger("FadeIn");
+        
+        if (inteval >= backToTitle)
         {
             SceneManager.LoadScene(menuScene);
         }
