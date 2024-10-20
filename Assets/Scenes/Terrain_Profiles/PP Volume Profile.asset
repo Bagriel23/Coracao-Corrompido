@@ -21,9 +21,9 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 1.17
+    value: 0.85
   color:
-    overrideState: 0
+    overrideState: 1
     value: {r: 0, g: 0, b: 0, a: 1}
   ambientOnly:
     overrideState: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
     value: 0
   softKnee:
     overrideState: 0
-    value: 0.5
+    value: 0.507
   clamp:
     overrideState: 0
     value: 65472
@@ -142,10 +142,10 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.321
+    value: 0.349
   smoothness:
     overrideState: 1
-    value: 0.634
+    value: 0.525
   roundness:
     overrideState: 0
     value: 1
