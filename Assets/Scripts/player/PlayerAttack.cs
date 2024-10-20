@@ -21,8 +21,8 @@ public class PlayerAttack : MonoBehaviour
         inputs = GetComponent<DetectInputs>();
 
 
-        inputs.controls.PlayerInputs.Attack.performed += context => attack = true;
-        inputs.controls.PlayerInputs.Attack.canceled += context => attack = false;
+       // inputs.controls.PlayerInputs.Attack.performed += context => attack = true;
+        //inputs.controls.PlayerInputs.Attack.canceled += context => attack = false;
     }
     // Update is called once per frame
     void Update()

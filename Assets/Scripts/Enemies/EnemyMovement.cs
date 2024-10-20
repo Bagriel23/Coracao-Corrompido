@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    DetectInputs inputs;
     private Animator anim;
     private Transform player;
     private UnityEngine.AI.NavMeshAgent selfAgent;
-    private float speed = 1f;
+    private float speed = 4f;
     public bool hasSeparateAttack;
-
+    [SerializeField] private bool rAttack = false;
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
         selfAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
     }
+    private void Awake()
+    {
+        inputs = GetComponent<DetectInputs>();
 
+        inputs.controls.PlayerInputs.AttackRight.performed += context => rAttack = true;
+        inputs.controls.PlayerInputs.AttackRight.canceled += context => rAttack = false;
+
+    }
     // Update is called once per frame
     void Update()
     {
@@ -35,6 +43,8 @@ public class EnemyMovement : MonoBehaviour
         if (player != null && !anim.GetBool("AttackPlayer"))
         { 
             anim.SetFloat("Speed", speed);
+            //if (!rAttack) return;
+            selfAgent.speed = speed;
             selfAgent.destination = player.position;
         }
         else
@@ -48,6 +58,8 @@ public class EnemyMovement : MonoBehaviour
     {
         if (player != null)
         {
+            //if (!rAttack) return;
+             selfAgent.speed = speed;
             selfAgent.destination = player.position;
         }
         else

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerActions : MonoBehaviour
 {
     DetectInputs inputs;
     [Header("Inputs de movimento")]
@@ -18,13 +18,19 @@ public class PlayerMovement : MonoBehaviour
     [Header("Config de movimento ")]
     public float movSpeed;
     private float verticalVelocity;
-    Vector3 hitBoxPosition;
 
     [Header("Config de Range de ataque")]
     public float attackRadius;
+    public Transform leftHitBoxPosition;
+    public GameObject leftAttackVFX;
+    public Transform rightHitBoxPosition;
+    public GameObject rightAttackVFX;
     float distanceInFront = 1.5f;
-    [SerializeField] private bool attack;
+    [SerializeField] private bool lAttack, rAttack;
 
+    [Header("Config de dano de ataques")]
+    public int leftMagicDamage;
+    public float rightLowerSpeedIntensity;
 
     void Start()
     {
@@ -40,19 +46,22 @@ public class PlayerMovement : MonoBehaviour
         inputs.controls.PlayerInputs.Movement.canceled += context => moveInput = Vector2.zero;
         inputs.controls.PlayerInputs.Dodge.performed += context => dodge = true;
         inputs.controls.PlayerInputs.Dodge.canceled += context => dodge = false;
-        inputs.controls.PlayerInputs.Attack.performed += context => attack = true;
-        inputs.controls.PlayerInputs.Attack.canceled += context => attack = false;
+        inputs.controls.PlayerInputs.AttackRight.performed += context => rAttack = true;
+        inputs.controls.PlayerInputs.AttackLeft.performed += context => lAttack = true;
+        inputs.controls.PlayerInputs.AttackRight.canceled += context => rAttack = false;
+        inputs.controls.PlayerInputs.AttackLeft.canceled += context => lAttack = false;
 
 
     }
     void Update()
     {
         ApplyMovement();
-        Attack();
         ResetTimerToDodge();
-
+        LeftAttack();
+        RightAttack();
     }
 
+  
     private void ApplyMovement()
     {
         movementDirection = transform.TransformDirection(new Vector3(moveInput.x, 0, moveInput.y));
@@ -89,24 +98,56 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Attack()
+    private void LeftAttack()
     {
-        if (attack)
+
+        //hitBoxPosition = this.transform.position + this.transform.forward * distanceInFront;
+        if (lAttack)
         {
+            /**Vector3 hitBoxSize = new Vector3(attackRadius, attackRadius, attackRadius);
 
-            hitBoxPosition = this.transform.position + this.transform.forward * distanceInFront;
-
-            Vector3 hitBoxSize = new Vector3(attackRadius, attackRadius, attackRadius);
-
-            Collider[] enemiesToDamage = Physics.OverlapBox(hitBoxPosition, hitBoxSize / 2, Quaternion.identity);
+            Collider[] enemiesToDamage = Physics.OverlapBox(leftHitBoxPosition.position, hitBoxSize / 2, Quaternion.identity);
             for (int i = 0; i < enemiesToDamage.Length; i++)
             {
                 EnemyLife enemyLife = enemiesToDamage[i].GetComponent<EnemyLife>();
                 if (enemyLife != null)
                 {
-                    enemyLife.TakeDamage(1);
+                    enemyLife.TakeDamage(leftMagicDamage);
                 }
-            }
+            }**/
+            leftAttackVFX.SetActive(true);
+        }
+        else
+        {
+            leftAttackVFX.SetActive(false);
+        }
+
+
+    }
+
+    private void RightAttack()
+    {
+
+        //hitBoxPosition = this.transform.position + this.transform.forward * distanceInFront;
+        if (rAttack)
+        {
+
+            /**Vector3 hitBoxSize = new Vector3(attackRadius, attackRadius, attackRadius);
+
+            Collider[] enemiesToDamage = Physics.OverlapBox(rightHitBoxPosition.position, hitBoxSize / 2, Quaternion.identity);
+            for (int i = 0; i < enemiesToDamage.Length; i++)
+            {
+                UnityEngine.AI.NavMeshAgent enemySpeed = enemiesToDamage[i].GetComponent<UnityEngine.AI.NavMeshAgent>();
+                if (enemySpeed != null)
+                {
+                    enemySpeed.speed = rightLowerSpeedIntensity;
+                }
+            }**/
+            rightAttackVFX.SetActive(true);
+        }
+        else
+        {
+            rightAttackVFX.SetActive(false);
         }
     }
 
