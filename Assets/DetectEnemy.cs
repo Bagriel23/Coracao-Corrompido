@@ -66,7 +66,7 @@ public class DetectEnemy : MonoBehaviour
         {
             Debug.Log("O INIMIGO FOI DETECTADO");
             EnemyLife enemyLife = other.GetComponent<EnemyLife>();
-            if (hasLeftAttack )
+            if (hasLeftAttack && lAttack)
             {
                 if (enemyLife != null)
                 {
@@ -77,11 +77,12 @@ public class DetectEnemy : MonoBehaviour
                     }
                 }
             }
-            else if (hasRightAttack)
+            else if (hasRightAttack && rAttack)
             {
                 UnityEngine.AI.NavMeshAgent enemySpeed = other.GetComponent<UnityEngine.AI.NavMeshAgent>();
                 if (enemySpeed != null)
                 {
+                    Debug.Log("ESTA DETECTANDO O ATAQUE DIREITO NESTE INIMIGO");
                     enemySpeed.speed = player.rightLowerSpeedIntensity;
                     enemyLife.TookRightSlow();
                 }

@@ -9,13 +9,15 @@ public class EnemyMovement : MonoBehaviour
     private Transform player;
     private UnityEngine.AI.NavMeshAgent selfAgent;
     private float speed = 4f;
-    public bool hasSeparateAttack;
+    public bool hasSeparateAttack, isSlowSignVisible = false;
+    private EnemyLife life;
     [SerializeField] private bool rAttack = false;
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
         selfAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
+        life = GetComponent<EnemyLife>();
     }
     private void Awake()
     {
@@ -36,30 +38,48 @@ public class EnemyMovement : MonoBehaviour
         {
             MoveTowardsPlayer();
         }
+
+        if (selfAgent.speed != speed && !isSlowSignVisible)
+        {
+            life.ShowSlowSign();
+            isSlowSignVisible = true;
+        }
+        else if (selfAgent.speed == speed && isSlowSignVisible)
+        {
+            life.HideSlowSign();
+            isSlowSignVisible = false;
+        }
     }
 
     private void MoveTowardsPlayerWithSpeedParameter()
     {
         if (player != null && !anim.GetBool("AttackPlayer"))
-        { 
+        {
             anim.SetFloat("Speed", speed);
             //if (!rAttack) return;
-            selfAgent.speed = speed;
+            if (!isSlowSignVisible)
+            {
+                selfAgent.speed = speed;
+            }
             selfAgent.destination = player.position;
         }
         else
         {
             selfAgent.destination = this.transform.position;
         }
-       
+
     }
 
     private void MoveTowardsPlayer()
     {
         if (player != null)
         {
+            anim.SetFloat("Speed", speed);
             //if (!rAttack) return;
-             selfAgent.speed = speed;
+            if (!isSlowSignVisible)
+            {
+                selfAgent.speed = speed;
+            }
             selfAgent.destination = player.position;
         }
         else
