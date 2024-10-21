@@ -3503,6 +3503,52 @@ RectTransform:
   m_AnchoredPosition: {x: 1, y: 3}
   m_SizeDelta: {x: -4.3319016, y: 0.049999237}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1157059646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1157059648}
+  - component: {fileID: 1157059647}
+  m_Layer: 0
+  m_Name: SoundController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1157059647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157059646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc149dab26e2306dab552df45196e475, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicPlaylist: []
+  effectsPlaylist: []
+--- !u!4 &1157059648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157059646}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 304.3888, y: 177.58742, z: 62.719864}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1169200068
 GameObject:
   m_ObjectHideFlags: 0
@@ -4677,8 +4723,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.38918748, y: 0.11000001}
   m_AnchorMax: {x: 0.6087291, y: 0.5}
-  m_AnchoredPosition: {x: 1.9999847, y: -0.16000366}
-  m_SizeDelta: {x: 0.32699585, y: 0.32998657}
+  m_AnchoredPosition: {x: 41.793, y: 41.792}
+  m_SizeDelta: {x: 83.586, y: 83.583}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1636454726
 MonoBehaviour:
@@ -5774,9 +5820,10 @@ SceneRoots:
   - {fileID: 1169200070}
   - {fileID: 107098272}
   - {fileID: 2113979490}
-  - {fileID: 1296572976}
-  - {fileID: 1421502998}
   - {fileID: 743631672}
   - {fileID: 1943540850}
   - {fileID: 77834500}
   - {fileID: 1665309144}
+  - {fileID: 1157059648}
+  - {fileID: 1421502998}
+  - {fileID: 1296572976}

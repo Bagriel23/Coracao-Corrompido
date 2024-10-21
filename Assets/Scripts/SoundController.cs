@@ -23,9 +23,9 @@ public class SoundController : MonoBehaviour
 
     private void LoadVolumeSettings()
     {
-        globalVolume = PlayerPrefs.GetFloat("GlobalVolume", 0.5f);
+        globalVolume = PlayerPrefs.GetFloat("GlobalVolume", 0.6f);
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f) * globalVolume;
-        effectsVolume = PlayerPrefs.GetFloat("EffectsVolume", 0.5f) * globalVolume;
+        effectsVolume = PlayerPrefs.GetFloat("EffectsVolume", 0.4f) * globalVolume;
 
         musicSource.volume = musicVolume;
         effectsSource.volume = effectsVolume;
