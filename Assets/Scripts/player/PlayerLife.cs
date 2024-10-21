@@ -33,11 +33,11 @@ public class PlayerLife : MonoBehaviour
     void Update()
     {
         UpdateHP();
-        testDamage();        
+        // testDamage();        
         easeEffect();
         DeathScenario();
         DisableHitEffect();
-        XD();
+        // XD();
 
         currentHP =  Mathf.Clamp(currentHP, 0, maxHP);
     }
