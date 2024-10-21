@@ -11,7 +11,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/testes player.unity
     guid: 1c622dd3c430d374fa93f545a1481111
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PauseTest.unity
     guid: 1e9357f3542d8b34d8262b9f52a5fc2e
+  - enabled: 1
+    path: Assets/Scenes/Terrain.unity
+    guid: 14bd64180252d62edafeaa9658e3d3f2
+  - enabled: 1
+    path: Assets/Scenes/TelaDeVitoria.unity
+    guid: 32fa31247a8609cb8bc38cd6c912f79c
+  - enabled: 1
+    path: Assets/Scenes/Introduction.unity
+    guid: 8002a35585d03d46aafcf8c2f14000de
   m_configObjects: {}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerLife : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class PlayerLife : MonoBehaviour
         easeEffect();
         DeathScenario();
         DisableHitEffect();
+        XD();
 
         currentHP =  Mathf.Clamp(currentHP, 0, maxHP);
     }
@@ -92,5 +94,13 @@ public class PlayerLife : MonoBehaviour
     {
         hitEffect.SetActive(true);
         flashEndTime = Time.time + flashDuration;
+    }
+
+    private void XD()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            SceneManager.LoadScene("TelaDeVitoria");
+        }
     }
 }

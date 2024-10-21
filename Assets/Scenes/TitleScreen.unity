@@ -1368,7 +1368,7 @@ MonoBehaviour:
   - {fileID: 330454413}
   - {fileID: 843692062}
   - {fileID: 1745509366}
-  nextScene: PauseTest
+  nextScene: Introduction
   menuPanel: {fileID: 1842330572}
   settingsPanel: {fileID: 69978919}
   invertAnalog: {fileID: 1121571388}

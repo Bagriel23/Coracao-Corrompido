@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class BackToMenu : MonoBehaviour
 {
-    [SerializeField] private int count;
+    [SerializeField] private float waitTime = 5f;
     [SerializeField] private string title;
-    private int i;
+    private float elapsedTime = 0f;
+
     void Start()
     {
         Time.timeScale = 1f;
@@ -21,15 +22,11 @@ public class BackToMenu : MonoBehaviour
 
     private void BackToTitle()
     {
-        while (count >= i)
-        {
-            i++;
-        }
+        elapsedTime += Time.deltaTime;
 
-        if (i == count)
+        if (elapsedTime >= waitTime)
         {
             SceneManager.LoadScene(title);
-            Debug.Log("Falta buildar a cena xd");
         }
     }
 }
