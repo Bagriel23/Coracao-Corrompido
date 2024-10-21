@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class SoundController : MonoBehaviour
 {
-    public AudioClip[] musicPlaylist;
-    public AudioClip[] effectsPlaylist;
-    private AudioSource musicSource;
-    private AudioSource effectsSource;
+    public AudioSource[] musicPlaylist;
+    public AudioSource[] effectsPlaylist;
 
     private float globalVolume;
     private float musicVolume;
@@ -15,10 +13,12 @@ public class SoundController : MonoBehaviour
 
     private void Start()
     {
-        musicSource = gameObject.AddComponent<AudioSource>();
-        effectsSource = gameObject.AddComponent<AudioSource>();
-
         LoadVolumeSettings();
+    }
+
+    private void Update()
+    {
+        UpdateVolumeSettings();
     }
 
     private void LoadVolumeSettings()
@@ -27,23 +27,15 @@ public class SoundController : MonoBehaviour
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f) * globalVolume;
         effectsVolume = PlayerPrefs.GetFloat("EffectsVolume", 0.4f) * globalVolume;
 
-        musicSource.volume = musicVolume;
-        effectsSource.volume = effectsVolume;
-    }
+        foreach (AudioSource musicSource in musicPlaylist)
+        {
+            musicSource.volume = musicVolume;
+        }
 
-    public void PlayMusic(int clipIndex)
-    {
-        if (clipIndex < 0 || clipIndex >= musicPlaylist.Length) return;
-
-        musicSource.clip = musicPlaylist[clipIndex];
-        musicSource.Play();
-    }
-
-    public void PlaySoundEffect(int clipIndex)
-    {
-        if (clipIndex < 0 || clipIndex >= effectsPlaylist.Length) return;
-
-        effectsSource.PlayOneShot(effectsPlaylist[clipIndex], effectsVolume);
+        foreach (AudioSource effectSource in effectsPlaylist)
+        {
+            effectSource.volume = effectsVolume;
+        }
     }
 
     public void UpdateVolumeSettings()
@@ -52,8 +44,15 @@ public class SoundController : MonoBehaviour
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f) * globalVolume;
         effectsVolume = PlayerPrefs.GetFloat("EffectsVolume", 0.5f) * globalVolume;
 
-        musicSource.volume = musicVolume;
-        effectsSource.volume = effectsVolume;
+        foreach (AudioSource musicSource in musicPlaylist)
+        {
+            musicSource.volume = musicVolume;
+        }
+
+        foreach (AudioSource effectSource in effectsPlaylist)
+        {
+            effectSource.volume = effectsVolume;
+        }
     }
 
 }

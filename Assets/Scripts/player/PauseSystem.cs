@@ -14,6 +14,7 @@ public class PauseSystem : MonoBehaviour
         isPaused = false;
         pauseMenu.SetActive(false);
 
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -39,6 +40,7 @@ public class PauseSystem : MonoBehaviour
         isPaused = true;
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
+        AudioListener.volume = 0f;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -48,9 +50,10 @@ public class PauseSystem : MonoBehaviour
     {
         isPaused = false;
         pauseMenu.SetActive(false);
-        Time.timeScale = 1f;
+        Time.timeScale = PlayerPrefs.GetFloat("GlobalVolume", 0.6f);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
 }
