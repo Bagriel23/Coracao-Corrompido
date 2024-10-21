@@ -50,7 +50,8 @@ public class PauseSystem : MonoBehaviour
     {
         isPaused = false;
         pauseMenu.SetActive(false);
-        Time.timeScale = PlayerPrefs.GetFloat("GlobalVolume", 0.6f);
+        Time.timeScale = 1f;
+        AudioListener.volume = PlayerPrefs.GetFloat("GlobalVolume", 0.6f);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
