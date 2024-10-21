@@ -9,6 +9,7 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private Vector2 moveInput;
     [SerializeField] private Vector3 movementDirection;
     private CharacterController characterController;
+    private AudioSource dashSound;
     private bool dodge, dodgeIsActiveToUse;
     [SerializeField] private float timer;
     [Header("Config de Dodge ")]
@@ -36,7 +37,7 @@ public class PlayerActions : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         inputs = GetComponent<DetectInputs>();
-
+        dashSound = GetComponent<AudioSource>();
     }
     private void Awake()
     {
@@ -77,6 +78,7 @@ public class PlayerActions : MonoBehaviour
 
             if (dodge && dodgeIsActiveToUse)
             {
+                dashSound.Play();
                 characterController.Move(movementDirection * Time.deltaTime * distanceOfDodge);
                 dodgeIsActiveToUse = false;
             }
