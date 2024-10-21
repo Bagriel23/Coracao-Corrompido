@@ -4,6 +4,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class WaveSpawner : MonoBehaviour
 
         if (currentWaveIndex >= waves.Length)
         {
-            Debug.Log("Voce sobreviveu todas as waves!!");
+            SceneManager.LoadScene("TelaDeVitoria");
             return;
         }
 
