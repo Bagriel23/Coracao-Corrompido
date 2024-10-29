@@ -11,7 +11,7 @@ public class DeathEvent : MonoBehaviour
     [SerializeField] private Image bg;
     [SerializeField] private string menuScene;
     [SerializeField] private float backToTitle = 5f;
-    private float inteval = 0f;
+    private float interval = 0f;
 
     void Start()
     {
@@ -22,10 +22,10 @@ public class DeathEvent : MonoBehaviour
     {
         deathOverlay.SetActive(true);
         Time.timeScale = 0f;
-        inteval += Time.unscaledDeltaTime;
+        interval += Time.unscaledDeltaTime;
         bgAnimator.SetTrigger("FadeIn");
         
-        if (inteval >= backToTitle)
+        if (interval >= backToTitle)
         {
             SceneManager.LoadScene(menuScene);
         }
